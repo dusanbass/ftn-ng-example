@@ -1,27 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import { CryptoServiceService, RootCoin } from '../crypto-service.service';
-
-// interface Coin {
-//   id: string;
-//   rank: string;
-//   symbol: string;
-//   name: string;
-//   supply: string;
-//   maxSupply: string;
-//   marketCapUsd: string;
-//   volumeUsd24Hr: string;
-//   priceUsd: string;
-//   changePercent24Hr: string;
-//   vwap24Hr: string;
-//   explorer: string;
-// }
-
-// interface RootCoin {
-//   data: Coin[];
-//   timestamp: number;
-// }
+import { Coin, CryptoServiceService, RootCoin } from '../crypto-service.service';
 
 @Component({
   selector: 'app-crypto-watch-rest',
@@ -30,10 +9,11 @@ import { CryptoServiceService, RootCoin } from '../crypto-service.service';
 })
 export class CryptoWatchRestComponent implements OnInit {
 
-  coins$?: Observable<RootCoin>;
+  dataSource!: Coin[];
+  displayedColumns = ['id', 'name', 'priceUsd', 'change'];
 
   constructor(private cs: CryptoServiceService) {
-    this.coins$ = cs.getCoins();
+    cs.getCoins().subscribe(data => this.dataSource = data.data);
    }
 
   ngOnInit(): void {}

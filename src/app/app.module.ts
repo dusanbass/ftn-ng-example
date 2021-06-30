@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 import { CalculatorFormComponent } from './calculator-form/calculator-form.component';
 import { CryptoWatchRestComponent } from './crypto-watch-rest/crypto-watch-rest.component';
@@ -34,6 +35,7 @@ import { CryptoWatchRestComponent } from './crypto-watch-rest/crypto-watch-rest.
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
