@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Coin, CryptoServiceService, RootCoin } from '../crypto-service.service';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { Coin, CryptoServiceService } from '../crypto-service.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-crypto-watch-rest',
@@ -9,13 +11,20 @@ import { Coin, CryptoServiceService, RootCoin } from '../crypto-service.service'
 })
 export class CryptoWatchRestComponent implements OnInit {
 
-  dataSource!: Coin[];
+  dataSource!: MatTableDataSource<Coin>;
   displayedColumns = ['id', 'name', 'priceUsd', 'change'];
 
-  constructor(private cs: CryptoServiceService) {
-    cs.getCoins().subscribe(data => this.dataSource = data.data);
-   }
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngOnInit(): void {}
+  constructor(private cs: CryptoServiceService) {
+    cs.getCoins().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data.data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  ngOnInit(): void { }
 
 }

@@ -17,6 +17,8 @@ import { MatTableModule } from '@angular/material/table';
 
 import { CalculatorFormComponent } from './calculator-form/calculator-form.component';
 import { CryptoWatchRestComponent } from './crypto-watch-rest/crypto-watch-rest.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,8 @@ import { CryptoWatchRestComponent } from './crypto-watch-rest/crypto-watch-rest.
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
