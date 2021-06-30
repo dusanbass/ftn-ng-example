@@ -1,0 +1,24 @@
+<p class="mat-h1">calculator-form works!</p>
+<form [formGroup]="calculatorForm" class="formField">
+    <mat-form-field>
+        <mat-label>Your first number</mat-label>
+        <input matInput formControlName="firstNumber" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Your second number</mat-label>
+        <input matInput formControlName="secondNumber" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Select an operation</mat-label>
+        <mat-select formControlName="operation" class="operationSelect">
+            <mat-option *ngFor="let operation of operations" [value]="operation.value">
+                {{ operation.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button (click)="calculateResult()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>functions</mat-icon>
+    </button>
+</form>
+
+<p class="mat-h1">Your result: {{ result }}</p>
